@@ -32,13 +32,15 @@ type UserInputFromHTTPPost struct {
 var db *sql.DB
 
 func init() {
-	loadEnv()
+	//loadEnv()
 	// ①-1 connecting to the test_database
 	mysqlUser := os.Getenv("MYSQL_USER")
 	mysqlPwd := os.Getenv("MYSQL_PWD")
 	mysqlHost := os.Getenv("MYSQL_HOST")
 	mysqlDatabase := os.Getenv("MYSQL_DATABASE")
 	connStr := fmt.Sprintf("%s:%s@%s/%s", mysqlUser, mysqlPwd, mysqlHost, mysqlDatabase)
+	log.Println(connStr)
+	log.Printf(string(connStr))
 	// ①-2 opening sql
 	_db, err := sql.Open("mysql", connStr)
 	if err != nil {
