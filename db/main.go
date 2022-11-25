@@ -18,16 +18,6 @@ import (
 	_ "github.com/joho/godotenv"
 )
 
-type UserResForHTTPGet struct {
-	Id   string `json:"id"`
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-}
-type UserInputFromHTTPPost struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-}
-
 // ① GoプログラムからMySQLへ接続
 var db *sql.DB
 
