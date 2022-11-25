@@ -2,6 +2,7 @@ package dao
 
 import (
 	"database/sql"
+	"db/model"
 	"log"
 )
 
@@ -22,29 +23,32 @@ const (
 	sqlDeleteTodoItem   = ` DELETE FROM thanks WHERE id = $1`
 )
 
-type HackathonDB struct {
-	*sql.DB
+// DBThank embeds Gratitude and adds DB-specific methods
+// https://golang.org/doc/effective_go.html#embedding
+type DBThank struct {
+	*model.Gratitude
 }
 
-func (todoItem *HackathonDB) scan(rows *sql.Rows) {
+func (thanks *DBThank) scan(rows *sql.Rows) {
 	err := rows.Scan(
-		&todoItem.Id,
-		&todoItem.Title,
-		&todoItem.Due,
-		&todoItem.Done)
+		&thanks.Id,
+		&thanks.From_,
+		&thanks.To_,
+		&thanks.Point,
+		&thanks.Message)
 	if err != nil {
 		log.Fatalln(err)
 	}
 }
 
-// DBTodoItems embeds DBTodoItem and adds DB-specific methods
-type DBTodoItems []*DBTodoItem
+// DBThanks embeds DBThank and adds DB-specific methods
+type DBThanks []*DBThank
 
-func (todoItems *DBTodoItems) scan(rows *sql.Rows) error {
+func (thanks *DBThanks) scan(rows *sql.Rows) error {
 	for rows.Next() {
-		todoItem := &DBTodoItem{&models.TodoItem{}}
-		todoItem.scan(rows)
-		*todoItems = append(*todoItems, todoItem)
+		thank := &DBThank{&model.Gratitude{}}
+		thank.scan(rows)
+		*thanks = append(*thanks, thank)
 	}
 	return rows.Err()
 }
