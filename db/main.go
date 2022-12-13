@@ -42,7 +42,7 @@ func Router() {
 	//api.Use(middleware.AuthMiddleware())
 
 	api.GET("/member", controller.FetchAllUsers)
-	api.POST("invite", controller.CreateUser)
+	api.POST("/invite", controller.CreateUser)
 	api.GET("/thanks", controller.FetchAllThank)
 	api.GET("/thanks/sent", controller.FetchAllThankSent)
 	api.GET("/thanks/received", controller.FetchAllThankReceived)
