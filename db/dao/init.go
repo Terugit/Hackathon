@@ -18,7 +18,7 @@ func init() {
 	mysqlDatabase := os.Getenv("MYSQL_DATABASE")
 
 	dsn := fmt.Sprintf("%s:%s@%s/%s", mysqlUser, mysqlPwd, mysqlHost, mysqlDatabase)
-	dsn = fmt.Sprintf("uttc:uttc@term2-teruki-nishino:us-central1:uttc1/hackathon")
+	dsn = fmt.Sprintf("uttc:uttc@(term2-teruki-nishino:us-central1:uttc1)/hackathon")
 	var err error
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
