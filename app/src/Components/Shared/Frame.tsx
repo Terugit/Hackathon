@@ -20,6 +20,9 @@ import { useHistory } from 'react-router-dom';
 import { IconAward , IconSend, IconChevronRight, IconStar} from '@tabler/icons';
 import { ActiveContext } from './ActiveProvider';
 import pic from "./Logo.png";
+import {ThankTo} from "../MyPage/ToUser"
+import { ThankFrom } from '../MyPage/FromUser';
+import { EditProfile } from '../MyPage/EditProfile';
 
 interface FrameProps {
   children: ReactNode;
@@ -73,29 +76,29 @@ export const Frame =({children} :FrameProps) => {
   ));
   return (
     <AppShell
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      navbar={
-        <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-        <Navbar.Section>
-          <Flex justify="center" align="center" gap="xl"> 
-           <Avatar src={useContext(UserContext).photo} radius="xl" size="xl" />
-           <Text fz="xl">{useContext(UserContext).name}</Text> 
-          </Flex>
-          <p></p>
-          <Flex justify="center" align="center" gap="xs">
-            <Text>Point Got：</Text>
-            <Text  fz="lg" c="cyan">{useContext(UserContext).point} </Text>
-            <Text> point</Text>
-          </Flex>
+      // navbarOffsetBreakpoint="sm"
+      // asideOffsetBreakpoint="sm"
+      // navbar={
+      //   <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
+      //   <Navbar.Section>
+      //     <Flex justify="center" align="center" gap="xl"> 
+      //      <Avatar src={useContext(UserContext).photo} radius="xl" size="xl" />
+      //      <Text fz="xl">{useContext(UserContext).name}</Text> 
+      //     </Flex>
+      //     <p></p>
+      //     <Flex justify="center" align="center" gap="xs">
+      //       <Text>Point Got：</Text>
+      //       <Text  fz="lg" c="cyan">{useContext(UserContext).point} </Text>
+      //       <Text> point</Text>
+      //     </Flex>
             
-            </Navbar.Section>
-            <Divider my="sm" color='#8ED1F4' />
-          <Box >{items}</Box>
-        </Navbar>
-      }
+      //       </Navbar.Section>
+      //       <Divider my="sm" color='#ffffff' />
+      //     <Box >{items}</Box>
+      //   </Navbar>
+      // }
       header={
-        <Header height={{ base: 80 }} p="md" style={{ display: 'flex', alignItems: 'center' ,justifyContent:'space-between'}} >
+        <Header height={{ base: 40 }} p="md" style={{ color:'white', backgroundColor:'black', display: 'flex', alignItems: 'center' ,justifyContent:'space-between'}} >
           <Flex gap="md" align="center">
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>   
@@ -109,7 +112,10 @@ export const Frame =({children} :FrameProps) => {
             </MediaQuery>
 
           </div>
-          <button onClick={rinkTop} >home</button>
+          <button style={{ color:'white'}} onClick={rinkTop} >home</button>
+          <button style={{ color:'white'}} onClick={rinkMyPage} >mypage</button>
+          <button style={{ color:'white'}} onClick={rinkUser} >ranking</button>
+          <button style={{ color:'white'}} onClick={rinkThank} >Thank!</button>
           
           </Flex>
           <UserList/>

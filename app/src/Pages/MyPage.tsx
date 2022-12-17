@@ -5,7 +5,9 @@ export const MyPage = () => {
   // console.log("MyPage")
     return(
       <>
-       <Frame><Tab /></Frame>
+       <Frame>
+        <Tab />
+        </Frame>
       </>
      )
 
